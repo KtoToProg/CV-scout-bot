@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: cv_scout_bot
+    restart: unless-stopped
+    env_file:
+      - .env.py
+    volumes:
+      - ./users.db:/app/users.db
+      - ./faiss_index.bin:/app/faiss_index.bin
+      - ./faiss_index_hash.txt:/app/faiss_index_hash.txt
+      - ./user_langs.json:/app/user_langs.json
+      - ./vacancies_analyzed.json:/app/vacancies_analyzed.json
