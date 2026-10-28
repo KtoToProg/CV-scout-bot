@@ -1,0 +1,13 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+aiogram
+aiohttp
+aiosqlite
+beautifulsoup4
+faiss-cpu
+gigachat
+lxml
+numpy
+pypdf
+python-dotenv
+requests
+sentence-transformers
