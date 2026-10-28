@@ -8,7 +8,7 @@ from pathlib import Path
 
 load_dotenv(Path(__file__).parent / ".env.py")
 
-CERT_PATH = r"C:\Users\User\Downloads\russian_trusted_root_ca.crt"
+CERT_PATH = str(Path(__file__).parent / "russian_trusted_root_ca.crt")
 GIGACHAT_KEY = os.getenv("GIGACHAT_KEY")
 MODEL = "GigaChat-2"
 INPUT_PATH = "vacancies.json"
