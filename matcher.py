@@ -11,7 +11,7 @@ from gigachat import GigaChat
 from sentence_transformers import SentenceTransformer
 
 PROJECT_DIR = Path(__file__).parent
-CERT_PATH = r"C:\Users\User\Downloads\russian_trusted_root_ca.crt"
+CERT_PATH = str(PROJECT_DIR / "russian_trusted_root_ca.crt")
 MODEL = "GigaChat-2"
 
 EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
