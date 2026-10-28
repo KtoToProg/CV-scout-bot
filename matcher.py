@@ -81,10 +81,24 @@ def get_file_hash(path):
 def build_or_load_index():
     global _index, _vacancies
 
+    # Защита: если файла с вакансиями нет, создаем пустую базу и выходим
+    if not VACANCIES_PATH.exists():
+        print(f"⚠️ Файл {VACANCIES_PATH.name} не найден.")
+        print("Создаю пустую базу. Запустите main.py и 2main.py для сбора данных.")
+        with open(VACANCIES_PATH, "w", encoding="utf-8") as f:
+            json.dump([], f)
+        _vacancies = []
+        return
+
     with open(VACANCIES_PATH, "r", encoding="utf-8") as f:
         all_vacs = json.load(f)
+    
     _vacancies = [v for v in all_vacs if v.get("description")]
     print(f"Вакансий в базе: {len(_vacancies)}")
+
+    if not _vacancies:
+        print("База пуста. Поиск невозможен.")
+        return
 
     current_hash = get_file_hash(VACANCIES_PATH)
 
