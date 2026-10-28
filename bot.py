@@ -27,7 +27,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN не найден в .env.py")
 
-TELEGRAM_PROXY_URL = "https://rapid-bar-672d.kto696876.workers.dev"
+TELEGRAM_PROXY_URL = os.getenv("TELEGRAM_PROXY_URL")
 
 SUPPORTED_LANGS = ("en", "ru")
 DEFAULT_LANG = "en"
