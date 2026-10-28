@@ -1,0 +1,12 @@
+.env.py
+.env
+.venv/
+__pycache__/
+*.pyc
+.idea/
+users.db
+user_langs.json
+vacancies.json
+vacancies_analyzed.json
+faiss_index.bin
+faiss_index_hash.txt
