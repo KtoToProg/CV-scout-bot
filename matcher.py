@@ -30,6 +30,7 @@ giga = GigaChat(
     ca_bundle_file=CERT_PATH,
     verify_ssl_certs=True,
     model=MODEL,
+    timeout=15
 )
 
 _embedder = None
@@ -81,10 +82,8 @@ def get_file_hash(path):
 def build_or_load_index():
     global _index, _vacancies
 
-    # Защита: если файла с вакансиями нет, создаем пустую базу и выходим
     if not VACANCIES_PATH.exists():
         print(f"⚠️ Файл {VACANCIES_PATH.name} не найден.")
-        print("Создаю пустую базу. Запустите main.py и 2main.py для сбора данных.")
         with open(VACANCIES_PATH, "w", encoding="utf-8") as f:
             json.dump([], f)
         _vacancies = []
@@ -92,12 +91,12 @@ def build_or_load_index():
 
     with open(VACANCIES_PATH, "r", encoding="utf-8") as f:
         all_vacs = json.load(f)
-    
+
     _vacancies = [v for v in all_vacs if v.get("description")]
     print(f"Вакансий в базе: {len(_vacancies)}")
 
     if not _vacancies:
-        print("База пуста. Поиск невозможен.")
+        print("База пуста.")
         return
 
     current_hash = get_file_hash(VACANCIES_PATH)
@@ -111,7 +110,7 @@ def build_or_load_index():
                 print(f"  индекс валиден: {_index.ntotal} вакансий")
                 return
 
-    print("  индекс устарел или отсутствует, перестраиваю...")
+    print("  перестраиваю индекс...")
     _index = None
 
     print("Строю эмбеддинги...")
@@ -165,6 +164,7 @@ Description: {description}
 Return ONLY valid JSON (no markdown, no code fences):
 {{
   "score": integer from 0 to 100,
+  "translated_title": "translate the vacancy Title to English",
   "verdict": "one-sentence overall verdict (max 20 words)",
   "summary": "a short paragraph (3-5 sentences) explaining the overall fit, strengths, and weaknesses",
   "match_reasons": ["2-4 reasons why the candidate fits"],
@@ -190,6 +190,7 @@ Return ONLY the JSON.""",
 Верни ТОЛЬКО валидный JSON (без markdown и code fences):
 {{
   "score": целое число от 0 до 100,
+  "translated_title": "",
   "verdict": "одно предложение-вывод (макс 20 слов)",
   "summary": "короткий абзац (3-5 предложений) — общая оценка соответствия, сильные и слабые стороны",
   "match_reasons": ["2-4 причины, почему подходит"],
@@ -221,6 +222,7 @@ def validate_score_schema(data):
 
     data["verdict"] = str(data.get("verdict", "")).strip()
     data["summary"] = str(data.get("summary", "")).strip()
+    data["translated_title"] = str(data.get("translated_title", "")).strip()
 
     for field in ["match_reasons", "gaps"]:
         val = data.get(field, [])
@@ -266,6 +268,7 @@ def score_match(resume_text, vacancy, language=DEFAULT_LANGUAGE):
         fallback = FALLBACK_MESSAGES.get(language, FALLBACK_MESSAGES["en"])
         return {
             "score": 0,
+            "translated_title": "",
             "verdict": fallback["verdict"],
             "summary": fallback["summary"],
             "match_reasons": [],
