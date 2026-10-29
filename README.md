@@ -40,13 +40,21 @@ graph TD
 
 ## 📂 Project Structure
 
-*   `main.py` — Asynchronous scraper for HeadHunter. Collects raw vacancies and saves them to `vacancies.json`.
+*   `.dockerignore` — Specifies files and directories to exclude from the Docker build context.
+*   `.env.example` — Template for environment variables (API keys, tokens).
+*   `.gitignore` — Specifies files to ignore in Git (secrets, databases).
 *   `2main.py` — Data processor. Passes each vacancy through GigaChat to extract structured data and saves it to `vacancies_analyzed.json`.
-*   `matcher.py` — The core engine. Handles vectorization, FAISS index construction, and the final LLM-scoring logic.
+*   `Dockerfile` — Instructions for building the Docker image.
+*   `LICENSE` — MIT License for the project.
+*   `README.md` — Project documentation and setup instructions.
 *   `bot.py` — The Telegram interface built with `Aiogram 3.x`. Handles user input, PDF parsing, SQLite database, and displays the final reports.
-*   `test_matcher.py` — A standalone script to test the embedding search and scoring without running the bot.
-*   `Dockerfile` & `docker-compose.yml` — Configuration for containerized deployment.
+*   `docker-compose.yml` — Configuration for running the application via Docker Compose.
+*   `main.py` — Asynchronous scraper for HeadHunter. Collects raw vacancies and saves them to `vacancies.json`.
+*   `matcher.py` — The core engine. Handles vectorization, FAISS index construction, and the final LLM-scoring logic.
+*   `requirements.txt` — List of Python dependencies required to run the project.
 *   `russian_trusted_root_ca.crt` — Root certificate required for secure connection to GigaChat API.
+*   `test_matcher.py` — A standalone script to test the embedding search and scoring without running the bot.
+*   `vacancies_analyzed.json` — Pre-parsed dataset of 100 IT vacancies for immediate bot testing.
 
 ## 🛠 Tech Stack
 
@@ -146,14 +154,21 @@ graph TD
 
 ## 📂 Структура проекта
 
-*   `main.py` — Асинхронный парсер HeadHunter. Собирает сырые вакансии и сохраняет их в `vacancies.json`.
+*   `.dockerignore` — Файлы и папки, исключаемые при сборке Docker-образа.
+*   `.env.example` — Шаблон для переменных окружения (ключи API, токены).
+*   `.gitignore` — Файлы, игнорируемые Git (секреты, базы данных).
 *   `2main.py` — Обработчик данных. Прогоняет вакансии через GigaChat для извлечения структурированных данных и сохраняет в `vacancies_analyzed.json`.
-*   `matcher.py` — Ядро системы. Отвечает за векторизацию текста, построение индекса FAISS и логику финального скоринга через LLM.
+*   `Dockerfile` — Инструкция для сборки Docker-образа.
+*   `LICENSE` — Лицензия MIT для проекта.
+*   `README.md` — Документация проекта и инструкции по установке.
 *   `bot.py` — Telegram-интерфейс на базе `Aiogram 3.x`. Обрабатывает ввод пользователя, парсит PDF, хранит данные в SQLite и выводит финальные отчеты.
-*   `test_matcher.py` — Отдельный скрипт для тестирования поиска и скоринга без запуска бота.
+*   `docker-compose.yml` — Конфигурация для запуска приложения через Docker Compose.
+*   `main.py` — Асинхронный парсер HeadHunter. Собирает сырые вакансии и сохраняет их в `vacancies.json`.
+*   `matcher.py` — Ядро системы. Отвечает за векторизацию текста, построение индекса FAISS и логику финального скоринга через LLM.
 *   `requirements.txt` — Список зависимостей Python.
-*   `Dockerfile` и `docker-compose.yml` — Конфигурация для запуска через Docker.
 *   `russian_trusted_root_ca.crt` — Корневой сертификат для безопасного подключения к API GigaChat.
+*   `test_matcher.py` — Отдельный скрипт для тестирования поиска и скоринга без запуска бота.
+*   `vacancies_analyzed.json` — Готовый датасет из 100 IT-вакансий для тестирования бота.
 
 ## 🛠 Технологии
 
