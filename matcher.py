@@ -96,7 +96,7 @@ def build_or_load_index():
     print(f"Вакансий в базе: {len(_vacancies)}")
 
     if not _vacancies:
-        print("База пуста.")
+        print("База пуста. Индекс не требуется.")
         return
 
     current_hash = get_file_hash(VACANCIES_PATH)
@@ -166,9 +166,9 @@ Return ONLY valid JSON (no markdown, no code fences):
   "score": integer from 0 to 100,
   "translated_title": "translate the vacancy Title to English",
   "verdict": "one-sentence overall verdict (max 20 words)",
-  "summary": "a short paragraph (3-5 sentences) explaining the overall fit, strengths, and weaknesses",
-  "match_reasons": ["2-4 reasons why the candidate fits"],
-  "gaps": ["1-3 things the candidate is missing"]
+  "summary": "Write a detailed paragraph of EXACTLY 4-5 sentences. Explain the overall fit, explicitly mention specific technologies from the resume that match the vacancy, and summarize strengths and weaknesses.",
+  "match_reasons": ["Provide exactly 3-4 detailed reasons why the candidate fits. Each reason must be a complete sentence mentioning specific skills."],
+  "gaps": ["Provide exactly 2-3 detailed points explaining what the candidate is missing. Each point must be a complete sentence."]
 }}
 
 Scoring scale: 0-30 poor, 30-60 partial, 60-85 good, 85-100 excellent.
@@ -192,9 +192,9 @@ Return ONLY the JSON.""",
   "score": целое число от 0 до 100,
   "translated_title": "",
   "verdict": "одно предложение-вывод (макс 20 слов)",
-  "summary": "короткий абзац (3-5 предложений) — общая оценка соответствия, сильные и слабые стороны",
-  "match_reasons": ["2-4 причины, почему подходит"],
-  "gaps": ["1-3 пункта, чего не хватает"]
+  "summary": "Напиши подробный абзац ровно из 4-5 предложений. Объясни общее соответствие, обязательно упомяни конкретные технологии из резюме, которые совпадают с вакансией, и опиши сильные и слабые стороны.",
+  "match_reasons": ["Дай ровно 3-4 подробные причины, почему кандидат подходит. Каждая причина должна быть полным предложением с упоминанием конкретных навыков."],
+  "gaps": ["Дай ровно 2-3 подробных пункта, чего не хватает кандидату. Каждый пункт должен быть полным предложением."]
 }}
 
 Шкала: 0-30 не подходит, 30-60 частично, 60-85 хороший матч, 85-100 идеально.
@@ -248,7 +248,7 @@ def score_match(resume_text, vacancy, language=DEFAULT_LANGUAGE):
         response = giga.chat({
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.2,
-            "max_tokens": 1200,
+            "max_tokens": 1500,
         })
 
         choices = getattr(response, "choices", None)
