@@ -206,10 +206,13 @@ dp = Dispatcher()
 
 
 async def safe_answer(message: Message, text: str, **kwargs):
-    try:
-        return await message.answer(text, **kwargs)
-    except Exception as e:
-        print(f"Network error: {e}")
+    for attempt in range(10):
+        try:
+            return await message.answer(text, **kwargs)
+        except Exception as e:
+            print(f"Сетевая ошибка при отправке (попытка {attempt+1}/10): {e}")
+            if attempt < 9:
+                await asyncio.sleep(3)
 
 
 def format_report(scored, lang: str) -> str:
@@ -258,7 +261,7 @@ async def process_resume(message: Message, resume_text: str, lang: str):
     if len(resume_text) > MAX_RESUME_LEN:
         resume_text = resume_text[:MAX_RESUME_LEN]
 
-    status_msg = await safe_answer(message, t(uid, "analyzing"), parse_mode="HTML")
+    status_msg = await safe_answer(message, UI[locked_lang]["analyzing"], parse_mode="HTML")
 
     try:
         top = await asyncio.wait_for(
@@ -266,16 +269,18 @@ async def process_resume(message: Message, resume_text: str, lang: str):
             timeout=15.0
         )
     except Exception:
-        await status_msg.edit_text(
-            "Поиск занял слишком много времени. Попробуйте еще раз." if locked_lang == "ru" else "Search took too long. Please try again.")
+        err_text = "Поиск занял слишком много времени. Попробуйте еще раз." if locked_lang == "ru" else "Search took too long. Please try again."
+        await status_msg.edit_text(err_text)
         return
 
     if not top:
-        await status_msg.edit_text(t(uid, "nothing_found"))
+        await status_msg.edit_text(UI[locked_lang]["nothing_found"])
         return
 
+    print(f"🔍 FAISS вернул вакансий: {len(top)}")
+
     try:
-        await status_msg.edit_text(t(uid, "scoring"), parse_mode="HTML")
+        await status_msg.edit_text(UI[locked_lang]["scoring"], parse_mode="HTML")
     except Exception:
         pass
 
@@ -305,11 +310,13 @@ async def process_resume(message: Message, resume_text: str, lang: str):
     scored.sort(key=lambda x: (x.get("score_data") or {}).get("score", 0), reverse=True)
 
     try:
-        await status_msg.edit_text(t(uid, "done"), parse_mode="HTML")
+        await status_msg.edit_text(UI[locked_lang]["done"], parse_mode="HTML")
     except Exception:
         pass
 
-    for item in scored:
+    print(f"📤 Отправляю карточек: {len(scored)}")
+
+    for i, item in enumerate(scored):
         report = format_report(item, locked_lang)
         await safe_answer(
             message,
@@ -317,7 +324,8 @@ async def process_resume(message: Message, resume_text: str, lang: str):
             parse_mode="HTML",
             disable_web_page_preview=True,
         )
-        await asyncio.sleep(1)
+        print(f"  Успешно отправлена {i+1}/{len(scored)}: {item['vacancy'].get('name', '')[:30]}...")
+        await asyncio.sleep(2)
 
 
 @dp.message(Command("start"))
@@ -429,7 +437,7 @@ async def handle_text(message: Message):
     lang = get_lang(message.from_user.id)
     text = message.text.strip()
     if len(text) < 50:
-        await safe_answer(message, t(message.from_user.id, "too_short"))
+        await safe_answer(message, UI[lang]["too_short"])
         return
     await process_resume(message, text, lang)
 
