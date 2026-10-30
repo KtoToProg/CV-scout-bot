@@ -121,11 +121,11 @@ docker-compose up -d --build
 ## 🎥 Русское демо
 
 <p align="center">
-  <img src="./Screenshot1RUS.png" width="24%" />
-  <img src="./Screenshot2RUS.png" width="24%" />
-  <img src="./Screenshot3RUS.png" width="24%" />
-  <img src="./Screenshot4RUS.png" width="24%" />
-  <img src="./Screenshot5RUS.png" width="24%" />
+  <img src="screenshots/screenshot1rus.png" width="24%" />
+  <img src="screenshots/screenshot2rus.png" width="24%" />
+  <img src="screenshots/screenshot3rus.png" width="24%" />
+  <img src="screenshots/screenshot4rus.png" width="24%" />
+  <img src="screenshots/screenshot5rus.png" width="24%" />
 </p>
 
 ## 🧠 Как это работает (Архитектура)
