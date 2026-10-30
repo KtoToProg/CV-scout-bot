@@ -5,12 +5,12 @@ An end-to-end AI system that matches a user's resume with real IT job vacancies.
 ## 🎥 English Demo
 
 <p align="center">
-  <img src="./Screenshot1ENG.png" width="24%" />
-  <img src="./Screenshot2ENG.png" width="24%" />
-  <img src="./Screenshot3ENG.png" width="24%" />
-  <img src="./Screenshot4ENG.png" width="24%" />
-  <img src="./Screenshot5ENG.png" width="24%" />
-  <img src="./Screenshot6ENG.png" width="24%" />
+  <img src="./screenshot1eng.png" width="24%" />
+  <img src="./screenshot2eng.png" width="24%" />
+  <img src="./screenshot3eng.png" width="24%" />
+  <img src="./screenshot4eng.png" width="24%" />
+  <img src="./screenshot5eng.png" width="24%" />
+  <img src="./screenshot6eng.png" width="24%" />
 </p>
 
 ## ✨ Key Features
