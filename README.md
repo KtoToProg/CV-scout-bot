@@ -5,12 +5,12 @@ An end-to-end AI system that matches a user's resume with real IT job vacancies.
 ## 🎥 English Demo
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4d0f8aa2-0348-4a1f-9f10-8f2b1bb1689a" width="24%" />
-  <img src="https://github.com/user-attachments/assets/75d04ac8-cc2d-4b01-bb8c-451ae31635aa" width="24%" />
-  <img src="https://github.com/user-attachments/assets/655856ba-094b-40df-8b6c-5b38039d77c4" width="24%" />
-  <img src="https://github.com/user-attachments/assets/676ef8bd-0d8b-4d81-9b71-46e745fdc46d" width="24%" />
-  <img src="https://github.com/user-attachments/assets/9d2fd79a-a631-4817-b67c-d575b057b9d5" width="24%" />
-  <img src="https://github.com/user-attachments/assets/bcfab3e1-e737-496f-8860-83c80d790c7c" width="24%" />
+  <img src="./Screenshot1ENG.png" width="24%" />
+  <img src="./Screenshot2ENG.png" width="24%" />
+  <img src="./Screenshot3ENG.png" width="24%" />
+  <img src="./Screenshot4ENG.png" width="24%" />
+  <img src="./Screenshot5ENG.png" width="24%" />
+  <img src="./Screenshot6ENG.png" width="24%" />
 </p>
 
 ## ✨ Key Features
@@ -53,6 +53,7 @@ graph TD
 *   `matcher.py` — The core engine. Handles vectorization, FAISS index construction, and the final LLM-scoring logic.
 *   `requirements.txt` — List of Python dependencies required to run the project.
 *   `russian_trusted_root_ca.crt` — Root certificate required for secure connection to GigaChat API.
+*   `screenshots/` — Directory containing demo images for the README.
 *   `test_matcher.py` — A standalone script to test the embedding search and scoring without running the bot.
 *   `vacancies_analyzed.json` — Pre-parsed dataset of 100 IT vacancies for immediate bot testing.
 
@@ -120,11 +121,11 @@ docker-compose up -d --build
 ## 🎥 Русское демо
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/87dca58c-6853-4135-b788-b91d57e3111a" width="24%" />
-  <img src="https://github.com/user-attachments/assets/fc2d1b65-d46e-4fd3-b842-2f1cc3585c66" width="24%" />
-  <img src="https://github.com/user-attachments/assets/8bdf503b-4110-4520-b020-063f613ce8af" width="24%" />
-  <img src="https://github.com/user-attachments/assets/132d333d-2a35-4025-a8b3-8b20b042de08" width="24%" />
-  <img src="https://github.com/user-attachments/assets/459c5ab0-8d39-4b0d-b28f-52119d45946f" width="24%" />
+  <img src="./Screenshot1RUS.png" width="24%" />
+  <img src="./Screenshot2RUS.png" width="24%" />
+  <img src="./Screenshot3RUS.png" width="24%" />
+  <img src="./Screenshot4RUS.png" width="24%" />
+  <img src="./Screenshot5RUS.png" width="24%" />
 </p>
 
 ## 🧠 Как это работает (Архитектура)
@@ -167,6 +168,7 @@ graph TD
 *   `matcher.py` — Ядро системы. Отвечает за векторизацию текста, построение индекса FAISS и логику финального скоринга через LLM.
 *   `requirements.txt` — Список зависимостей Python.
 *   `russian_trusted_root_ca.crt` — Корневой сертификат для безопасного подключения к API GigaChat.
+*   `screenshots/` — Папка с демонстрационными скриншотами для README.
 *   `test_matcher.py` — Отдельный скрипт для тестирования поиска и скоринга без запуска бота.
 *   `vacancies_analyzed.json` — Готовый датасет из 100 IT-вакансий для тестирования бота.
 
