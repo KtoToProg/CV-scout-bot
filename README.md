@@ -227,6 +227,5 @@ docker-compose up -d --build
 
 ---
 ## 👨‍💻 Автор
-Проект разработан как портфолио для поступления в летнюю школу по искусственному интеллекту.
 *   **GitHub:** [KtoToProg](https://github.com/KtoToProg)
 *   **Telegram Bot:** [@CV_scoutBot](https://t.me/CV_scoutBot)
