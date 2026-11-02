@@ -2,6 +2,10 @@
 
 An end-to-end AI system that matches a user's resume with real IT job vacancies. The bot scrapes live data from HeadHunter, extracts key skills and requirements using LLM (GigaChat), and applies semantic vector search to instantly find and score the best matches.
 
+👉 **[Try the bot on Telegram](https://t.me/CV_scoutBot)**
+
+> ⚠️ **Note:** This is an educational/test project. The bot might not be online 24/7, as it may run on a local machine or a free tier server. If it doesn't respond right away, please refer to the screenshots below.
+
 ## 🎥 English Demo
 
 <p align="center">
@@ -117,6 +121,10 @@ docker-compose up -d --build
 # 🇷🇺 Русская версия (Russian Translation)
 
 **CV-scout** — это сквозная AI-система, которая подбирает IT-вакансии под резюме пользователя. Бот собирает данные с HeadHunter, извлекает ключевые навыки и требования с помощью языковой модели (GigaChat) и использует семантический векторный поиск для мгновенного нахождения и оценки лучших совпадений.
+
+👉 **[Попробовать бота в Telegram](https://t.me/CV_scoutBot)**
+
+> ⚠️ **Примечание:** Это учебный/тестовый проект. Бот может быть доступен не круглосуточно, так как запускается локально или на бесплатном сервере. Если он не отвечает, пожалуйста, ориентируйтесь на скриншоты ниже.
 
 ## 🎥 Русское демо
 
